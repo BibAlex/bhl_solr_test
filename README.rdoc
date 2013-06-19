@@ -1,0 +1,5 @@
+= BA BHL solr
+
+	- index contains 99 indexed books
+	- to start: java -jar examples/start.jar
+	- check if it's running: http://localhost:8988/solr
