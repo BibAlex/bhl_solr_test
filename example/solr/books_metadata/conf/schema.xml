@@ -267,7 +267,7 @@
         sortMissingLast="true" omitNorms="true">
         <analyzer>
             <tokenizer class="solr.KeywordTokenizerFactory"/>           
-            <filter class="solr.LowerCaseFilterFactory" />
+            <!--filter class="solr.LowerCaseFilterFactory" /-->
         </analyzer>       
     </fieldType> 
 	
