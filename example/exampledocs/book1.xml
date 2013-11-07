@@ -1,0 +1,34 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<add>
+	<doc>
+		<field name="vol_jobid">2</field>
+		<field name="bok_bibid">DAF-BHL:proceedingsofbio14biol</field>
+		<field name="bok_title">Proceedings of the Biological Society of Washington</field>
+		<field name="bok_title"> Proc. Biol. Soc. Wash</field>
+		<field name="vol_incopyright">true</field>
+		<field name="name">Rhinosciurus</field>
+		<field name="name">Ranunculus septentrionalis</field>
+		<field name="author">Biological Society of Washington</field>
+		<field name="author">Breslaveëtìs, L. P. (Lidiëiìa Petrovna) b. 1882</field>
+		<field name="location">Washington</field>
+		<field name="bok_start_date">2006-01-17T00:00:00.000Z</field>
+		<field name="bok_end_date">2006-02-20T00:00:00.000Z</field>
+	</doc>
+</add>
+
