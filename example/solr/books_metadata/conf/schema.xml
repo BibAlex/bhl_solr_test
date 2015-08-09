@@ -109,14 +109,15 @@
 	<field name="name" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>
 	<field name="author" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>
 	<field name="geo_location" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>
-	<field name="published_at" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="published_at" type="text_general" indexed="true" stored="true" required="false"/>
 	<field name="subject" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>
 	<field name="bok_publisher" type="text_general" indexed="true" stored="true" required="false"/>		
 	<field name="bok_language" type="text_general" indexed="true" stored="true" required="false"/>
 	<field name="vol_name" type="text_general" indexed="true" stored="true" required="false"/>
-	<field name="content" type="text_general" indexed="true" stored="false" required="false"/>
-   
-  
+	<field name="rate" type="float" indexed="true" stored="true" required="false"/>
+	<field name="views" type="int" indexed="true" stored="true" required="false"/>
+	<field name="content" type="text_general" indexed="true" stored="false" required="false"/>   
+  	<field name="single_bok_title" type="string" indexed="true" stored="true" required="false"/>   
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -151,6 +152,8 @@
    <dynamicField name="*_is" type="int"    indexed="true"  stored="true"  multiValued="true"/>
    <dynamicField name="*_s"  type="string_ci"  indexed="true"  stored="false"/>
    <dynamicField name="*_ss" type="string_ci"  indexed="true"  stored="false" multiValued="true"/>
+   <dynamicField name="*_igs"  type="string_igs"  indexed="true"  stored="false"/>
+   <dynamicField name="*_igss" type="string_igs"  indexed="true"  stored="false" multiValued="true"/>
    <dynamicField name="*_l"  type="long"   indexed="true"  stored="true"/>
    <dynamicField name="*_ls" type="long"   indexed="true"  stored="true"  multiValued="true"/>
    <dynamicField name="*_t"  type="text_general"    indexed="true"  stored="false"/>
@@ -229,16 +232,23 @@
    	<copyField source="author" dest="author_ss"/>
 	<copyField source="name" dest="name_ss"/>
 	<copyField source="bok_title" dest="bok_title_ss"/>
-	<copyField source="published_at" dest="published_at_ss"/>
 	<copyField source="geo_location" dest="geo_location_ss"/>
 	<copyField source="subject" dest="subject_ss"/>
 	<copyField source="bok_publisher" dest="bok_publisher_s"/>
 	<copyField source="bok_language" dest="bok_language_s"/>
 	<copyField source="vol_name" dest="vol_name_s"/>
 	<copyField source="content_s" dest="content_s"/>
-	<copyField source="bok_start_date" dest="bok_start_date_tdt"/>
-	<copyField source="bok_end_date" dest="bok_end_date_tdt"/>
-	
+
+	<!--For autocomplete-->
+	<copyField source="author" dest="author_igss"/>
+	<copyField source="name" dest="name_igss"/>
+	<copyField source="bok_title" dest="bok_title_igss"/>
+	<copyField source="published_at" dest="published_at_igss"/>
+	<copyField source="geo_location" dest="geo_location_igss"/>
+	<copyField source="bok_language" dest="bok_language_igs"/>
+	<copyField source="subject" dest="subject_igss"/>
+	<copyField source="bok_publisher" dest="bok_publisher_igs"/>
+	<copyField source="bok_start_date" dest="bok_start_date_igs"/>
    	
    <!-- Above, multiple source fields are copied to the [text] field. 
 	  Another way to map multiple source fields to the same 
@@ -262,7 +272,7 @@
     <!-- The StrField type is not analyzed, but indexed/stored verbatim. -->
     <fieldType name="string" class="solr.StrField" sortMissingLast="true"  />
 
-    <!-- A Case insensitive version of string type  (done by Yosra Alaa)-->
+    <!--For Faceting-->
    <fieldType name="string_ci" class="solr.TextField"
         sortMissingLast="true" omitNorms="true">
         <analyzer>
@@ -270,7 +280,16 @@
             <!--filter class="solr.LowerCaseFilterFactory" /-->
         </analyzer>       
     </fieldType> 
-	
+
+    <!-- A Case insensitive version of string type  (done by Yosra Alaa for Autocomplete)-->
+   <fieldType name="string_igs" class="solr.TextField"
+
+        sortMissingLast="true" omitNorms="true">
+        <analyzer>
+            <tokenizer class="solr.KeywordTokenizerFactory"/>           
+            <filter class="solr.LowerCaseFilterFactory" />
+        </analyzer>       
+    </fieldType>
     <!-- boolean type: "true" or "false" -->
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
 
