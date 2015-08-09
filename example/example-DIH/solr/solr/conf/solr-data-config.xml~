@@ -17,6 +17,6 @@
 
 <dataConfig>
   <document>
-    <entity name="sep" processor="SolrEntityProcessor" url="http://127.0.0.1:8989/solr/db " query="*:*"/>
+    <entity name="sep" processor="SolrEntityProcessor" url="http://127.0.0.1:8988/solr/db " query="*:*"/>
   </document>
 </dataConfig>
